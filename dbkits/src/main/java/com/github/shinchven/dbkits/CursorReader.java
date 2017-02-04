@@ -1,6 +1,7 @@
 package com.github.shinchven.dbkits;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.util.Log;
 
 import java.lang.reflect.Field;
@@ -60,6 +61,10 @@ public class CursorReader {
                             long raw = cursor.getLong(columnIndex);
                             Date date = new Date(raw);
                             field.set(obj, date);
+                        } else if(value instanceof Uri){
+                            String uriString = cursor.getString(columnIndex);
+                            Uri uri = Uri.parse(uriString);
+                            field.set(obj,uri);
                         } else {
                             Log.i(TAG, "field: " + field.getName() + " not filled");
                         }

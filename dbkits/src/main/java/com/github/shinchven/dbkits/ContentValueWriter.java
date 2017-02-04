@@ -1,6 +1,7 @@
 package com.github.shinchven.dbkits;
 
 import android.content.ContentValues;
+import android.net.Uri;
 import android.util.Log;
 
 import java.lang.reflect.Field;
@@ -39,10 +40,12 @@ public class ContentValueWriter {
                     if (value instanceof Double || value instanceof Integer || value instanceof String || value instanceof Boolean
                             || value instanceof Long || value instanceof Float || value instanceof Short) {
                         values.put(field.getName(), value.toString());
-                    } else if (value instanceof Date)
+                    } else if (value instanceof Date) {
                         values.put(field.getName(), ((Date) value).getTime());
-                    else
-                        Log.w(LOG_TAG, "value could not be handled by field: " + value.toString());
+                    } else if(value instanceof Uri){
+                        values.put(field.getName(), ((Uri) value).toString());
+                    }else
+                        Log.w(LOG_TAG, "value could not be handled by field: " + field.getName()+":"+value.toString());
                 } else
                     Log.i(LOG_TAG, "value is null, so we don't include it");
             }
