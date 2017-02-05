@@ -18,6 +18,6 @@ you can use this library through <a href="https://jitpack.io">JitPack.io</a>
    }
 
    dependencies {
-        compile 'com.github.ShinChven:android-dbkits:1.0.0'
+        compile 'com.github.ShinChven:android-dbkits:1.0.1'
    }
 ```
