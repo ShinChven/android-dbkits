@@ -17,6 +17,13 @@ public class CursorReader {
 
     private final static String TAG = CursorReader.class.getSimpleName();
 
+    /**
+     * read a cursor and reflect data to the type provided.
+     * @param cursor a cursor from SQLite query.
+     * @param type the type you with to convert your data to.
+     * @param <T> the type you with to convert your data to.
+     * @return
+     */
     public static <T> List<T> read(Cursor cursor, Class<T> type) {
         List<T> list = new ArrayList<>();
 

@@ -20,7 +20,8 @@ public class ContentValueWriter {
 
     /**
      * convert your entity to ContentValues
-     * @param o your entity
+     *
+     * @param o                 your entity
      * @param ignoredFieldNames fields of these names will be ignored
      * @return
      */
@@ -48,10 +49,10 @@ public class ContentValueWriter {
                         values.put(field.getName(), value.toString());
                     } else if (value instanceof Date) {
                         values.put(field.getName(), ((Date) value).getTime());
-                    } else if(value instanceof Uri){
+                    } else if (value instanceof Uri) {
                         values.put(field.getName(), ((Uri) value).toString());
-                    }else
-                        Log.w(LOG_TAG, "value could not be handled by field: " + field.getName()+":"+value.toString());
+                    } else
+                        Log.w(LOG_TAG, "value could not be handled by field: " + field.getName() + ":" + field.getType().getName());
                 } else
                     Log.i(LOG_TAG, "value is null, so we don't include it");
             }
