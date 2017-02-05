@@ -18,6 +18,12 @@ public class ContentValueWriter {
 
     private final static String LOG_TAG = ContentValueWriter.class.getSimpleName();
 
+    /**
+     * convert your entity to ContentValues
+     * @param o your entity
+     * @param ignoredFieldNames fields of these names will be ignored
+     * @return
+     */
     public static ContentValues objectToContentValues(Object o, String... ignoredFieldNames) {
         ContentValues values = new ContentValues();
         try {
