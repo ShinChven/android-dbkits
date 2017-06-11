@@ -71,6 +71,7 @@ public class TableKit {
 
         Log.i("sql", sql.toString());
 
+        db.execSQL(sql.toString());
 
     }
 }
