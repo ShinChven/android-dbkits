@@ -18,7 +18,7 @@ public class TableKit {
     public static void createTable(Class type, SQLiteDatabase db, String... ignoredFieldNames) throws Exception {
         String tableName = type.getSimpleName();
         Field[] fields = type.getDeclaredFields();
-        List<String> columsSQL = new ArrayList<>();
+        List<String> columnsSQL = new ArrayList<>();
         List<String> fieldsToIgnore = Arrays.asList(ignoredFieldNames);
         for (Field field : fields) {
             field.setAccessible(true);
@@ -55,15 +55,15 @@ public class TableKit {
             } else {
                 Log.i("creating table", "field: " + field.getName() + " not filled");
             }
-            columsSQL.add(sb.toString());
+            columnsSQL.add(sb.toString());
         }
 
         StringBuilder sql = new StringBuilder();
         sql.append("create table ").append(tableName).append("( _id INTEGER PRIMARY KEY AUTOINCREMENT,");
 
-        for (int i = 0; i < columsSQL.size(); i++) {
-            sql.append(columsSQL.get(i));
-            if (i < columsSQL.size() - 1) {
+        for (int i = 0; i < columnsSQL.size(); i++) {
+            sql.append(columnsSQL.get(i));
+            if (i < columnsSQL.size() - 1) {
                 sql.append(",");
             }
         }
