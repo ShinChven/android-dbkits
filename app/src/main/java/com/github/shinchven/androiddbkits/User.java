@@ -11,6 +11,11 @@ public class User {
     private String username;
     private int age;
     private Date birthday;
+    private String profession;
+    private boolean married;
+    private float fValue;
+    private double dValue;
+    private long lValue;
 
     public int get_id() {
         return _id;
@@ -42,5 +47,45 @@ public class User {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public boolean isMarried() {
+        return married;
+    }
+
+    public void setMarried(boolean married) {
+        this.married = married;
+    }
+
+    public float getfValue() {
+        return fValue;
+    }
+
+    public void setfValue(float fValue) {
+        this.fValue = fValue;
+    }
+
+    public double getdValue() {
+        return dValue;
+    }
+
+    public void setdValue(double dValue) {
+        this.dValue = dValue;
+    }
+
+    public long getlValue() {
+        return lValue;
+    }
+
+    public void setlValue(long lValue) {
+        this.lValue = lValue;
     }
 }
