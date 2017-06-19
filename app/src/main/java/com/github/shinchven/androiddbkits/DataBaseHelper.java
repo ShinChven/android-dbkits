@@ -24,7 +24,7 @@ import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "db.sqlite";
-    private static final int DB_VERSION = 8;
+    private static final int DB_VERSION = 12;
 
     public DataBaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -77,7 +77,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         long result = 0;
         try {
-            result = db.insert("user", "_id", values);
+            result = db.insert(user.getClass().getSimpleName(), "_id", values);
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -94,7 +94,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public static @Nullable
-    List<User> getUsers(Context context) {
+    List<User> getUsers(Context context, Class type) {
         List<User> users = null;
 
         DataBaseHelper helper = new DataBaseHelper(context);
@@ -102,7 +102,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor cursor = null;
         try {
             db = helper.getReadableDatabase();
-            cursor = db.query("user", null, null, null, null, null, null);
+            cursor = db.query(type.getSimpleName(), null, null, null, null, null, null);
             users = CursorReader.read(cursor, User.class, new String[]{});
             while (cursor.moveToNext()) {
 

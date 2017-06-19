@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -91,6 +92,10 @@ public class CursorReader {
                             String uriString = cursor.getString(columnIndex);
                             Uri uri = Uri.parse(uriString);
                             field.set(obj, uri);
+                        } else if (field.getType() == File.class) {
+                            String filePath = cursor.getString(columnIndex);
+                            File file = new File(filePath);
+                            field.set(obj, file);
                         } else {
                             Log.i(TAG, "field: " + field.getName() + " not filled");
                         }

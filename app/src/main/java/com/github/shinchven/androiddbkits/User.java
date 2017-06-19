@@ -1,5 +1,8 @@
 package com.github.shinchven.androiddbkits;
 
+import android.net.Uri;
+
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -16,6 +19,9 @@ public class User {
     private float fValue;
     private double dValue;
     private long lValue;
+    private File avatar;
+    private String lastName;
+    private Uri contentUri;
 
     public int get_id() {
         return _id;
@@ -87,5 +93,29 @@ public class User {
 
     public void setlValue(long lValue) {
         this.lValue = lValue;
+    }
+
+    public File getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(File avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Uri getContentUri() {
+        return contentUri;
+    }
+
+    public void setContentUri(Uri contentUri) {
+        this.contentUri = contentUri;
     }
 }

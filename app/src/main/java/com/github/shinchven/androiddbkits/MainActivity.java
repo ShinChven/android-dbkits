@@ -1,6 +1,8 @@
 package com.github.shinchven.androiddbkits;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 2; i++) {
             User user = new User();
             user.setAge(15);
             user.setBirthday(new Date(System.currentTimeMillis()));
@@ -36,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
             user.setdValue(new Random().nextDouble());
             user.setfValue(new Random().nextFloat());
             user.setlValue(System.currentTimeMillis());
+            user.setLastName("hello");
+            user.setAvatar(getExternalFilesDir(Environment.DIRECTORY_DCIM));
+            user.setContentUri(Uri.parse("content://com.github.shinchven.db/2/3"));
             DataBaseHelper.addUser(this, user);
         }
 
 
-        List<User> users = DataBaseHelper.getUsers(this);
+        List<User> users = DataBaseHelper.getUsers(this, User.class);
         if (users != null) {
 
             Gson g = new GsonBuilder().setPrettyPrinting().create();
