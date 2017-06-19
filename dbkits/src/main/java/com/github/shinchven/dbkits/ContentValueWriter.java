@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
@@ -44,13 +45,17 @@ public class ContentValueWriter {
                 Object value = field.get(o);
                 if (value != null) {
                     //This part just makes sure the content values can handle the field
-                    if (value instanceof Double || value instanceof Integer || value instanceof String || value instanceof Boolean
+                    if (value instanceof Double || value instanceof Integer || value instanceof String
                             || value instanceof Long || value instanceof Float || value instanceof Short) {
                         values.put(field.getName(), value.toString());
+                    } else if (value instanceof Boolean) {
+                        values.put(field.getName(), ((Boolean) value) ? 1 : 0);
                     } else if (value instanceof Date) {
                         values.put(field.getName(), ((Date) value).getTime());
                     } else if (value instanceof Uri) {
                         values.put(field.getName(), ((Uri) value).toString());
+                    } else if (value instanceof File) {
+                        values.put(field.getName(), ((File) value).getAbsolutePath());
                     } else
                         Log.w(LOG_TAG, "value could not be handled by field: " + field.getName() + ":" + field.getType().getName());
                 } else

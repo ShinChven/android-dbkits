@@ -71,6 +71,9 @@ public class CursorReader {
                         } else if (field.getType() == Float.class || field.getType().getName().equals("float")) {
                             float data = cursor.getFloat(columnIndex);
                             field.setFloat(obj, data);
+                        } else if (field.getType() == Short.class || field.getType().getName().equals("short")) {
+                            short data = cursor.getShort(columnIndex);
+                            field.setShort(obj, data);
                         } else if (field.getType() == Long.class || field.getType().getName().equals("long")) {
                             long data = cursor.getLong(columnIndex);
                             field.setLong(obj, data);
@@ -109,7 +112,6 @@ public class CursorReader {
 
         return list;
     }
-
 
 
 }

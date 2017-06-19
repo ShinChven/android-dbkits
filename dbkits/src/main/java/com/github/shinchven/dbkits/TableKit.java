@@ -4,6 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -47,10 +48,10 @@ public class TableKit {
             } else if (field.getType() == String.class) {
                 sb.append("TEXT");
             } else if (field.getType() == Boolean.class || field.getType().getName().equals("boolean")) {
-                sb.append("boolean");
+                sb.append("INTEGER");
             } else if (field.getType() == Date.class) {
                 sb.append("LONG");
-            } else if (field.getType() == Uri.class) {
+            } else if (field.getType() == Uri.class || field.getType() == File.class) {
                 sb.append("TEXT");
             } else {
                 Log.i("creating table", "field: " + field.getName() + " not filled");
@@ -112,7 +113,7 @@ public class TableKit {
                 sb.append(" INTEGER");
             } else if (field.getType() == Date.class) {
                 sb.append(" LONG");
-            } else if (field.getType() == Uri.class) {
+            } else if (field.getType() == Uri.class || field.getType() == File.class) {
                 sb.append(" TEXT");
             } else {
                 Log.i("creating table", "field: " + field.getName() + " not updated");
@@ -127,7 +128,7 @@ public class TableKit {
         for (int i = 0; i < columnsSQL.size(); i++) {
             try {
                 db.execSQL(columnsSQL.get(i));
-                Log.i("sql","table update completed: "+columnsSQL.get(i).toLowerCase());
+                Log.i("sql", "table update completed: " + columnsSQL.get(i).toLowerCase());
             } catch (Exception e) {
                 e.printStackTrace();
             }

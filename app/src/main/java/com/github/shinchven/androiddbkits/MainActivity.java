@@ -5,10 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.sql.Date;
 import java.util.List;
@@ -37,10 +39,18 @@ public class MainActivity extends AppCompatActivity {
             DataBaseHelper.addUser(this, user);
         }
 
+
         List<User> users = DataBaseHelper.getUsers(this);
         if (users != null) {
-            for (User user : users) {
-                Log.i("user", user.toString());
+
+            Gson g = new GsonBuilder().setPrettyPrinting().create();
+            TextView txt = (TextView) findViewById(R.id.data);
+            try {
+                String data = g.toJson(users);
+                txt.setText(data);
+            } catch (Exception e) {
+                e.printStackTrace();
+                txt.setText("data error");
             }
         }
 
